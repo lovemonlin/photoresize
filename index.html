@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>照片縮圖程式 v3.0 - 網頁版</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入必要的函式庫 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- 左側：檔案列表區 -->
+        <div class="left-panel">
+            <div class="header">
+                <h1>圖庫與檔案</h1>
+            </div>
+            
+            <div class="toolbar">
+                <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+                <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">+ 新增照片</button>
+                <button class="btn btn-outline" onclick="clearAll()">清空列表</button>
+            </div>
+
+            <div class="file-list-container" id="dropZone">
+                <div id="fileList" class="file-list">
+                    <!-- 檔案項目會動態加入這裡 -->
+                </div>
+                <div id="emptyState" class="empty-state">
+                    <div class="icon">📂</div>
+                    <p>拖曳照片至此<br>或點擊「新增照片」</p>
+                </div>
+            </div>
+            
+            <div class="hint">💡 提示：所有的運算皆在您的瀏覽器中進行，照片不會上傳至網路，請安心使用。</div>
+        </div>
+
+        <!-- 右側：設定區 -->
+        <div class="right-panel">
+            <h2>設定與輸出</h2>
+
+            <!-- 模式選擇 -->
+            <div class="setting-group">
+                <label class="radio-label">
+                    <input type="radio" name="mode" value="percentage" checked onchange="toggleSettings()">
+                    依百分比縮小
+                </label>
+                <div id="setting-percentage" class="setting-content">
+                    <select id="percentSelect">
+                        <option value="70">70%</option>
+                        <option value="50">50%</option>
+                        <option value="30">30%</option>
+                        <option value="custom">自訂...</option>
+                    </select>
+                    <input type="number" id="percentCustom" placeholder="輸入 1-100" style="display: none;" min="1" max="100">
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <label class="radio-label">
+                    <input type="radio" name="mode" value="print" onchange="toggleSettings()">
+                    照片沖洗 (智慧裁切)
+                </label>
+                <div id="setting-print" class="setting-content hidden">
+                    <select id="printSelect">
+                        <option value="4x6">沖洗 4X6 (2:3)</option>
+                        <option value="5x7">沖洗 5X7 (5:7)</option>
+                        <option value="8x10">沖洗 8X10 (4:5)</option>
+                        <option value="8x12">沖洗 8X12 (2:3)</option>
+                        <option value="10x12">沖洗 10x12 (5:6)</option>
+                        <option value="11x14">沖洗 11X14 (11:14)</option>
+                        <option value="12x18">沖洗 12X18 (2:3)</option>
+                        <option value="16x20">沖洗 16X20 (4:5)</option>
+                        <option value="20x24">沖洗 20X24 (5:6)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <label class="radio-label">
+                    <input type="radio" name="mode" value="purpose" onchange="toggleSettings()">
+                    社群/通訊用途
+                </label>
+                <div id="setting-purpose" class="setting-content hidden">
+                    <select id="purposeSelect">
+                        <option value="4000">Facebook 貼文 (最少 4000px)</option>
+                        <option value="2000">Line 傳照片 (最少 2000px)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <label class="radio-label">
+                    <input type="radio" name="mode" value="quality" onchange="toggleSettings()">
+                    純畫質壓縮 (尺寸不變)
+                </label>
+                <div id="setting-quality" class="setting-content hidden">
+                     <div class="quality-options">
+                        <label><input type="radio" name="qualityVal" value="0.7" checked> 70%</label>
+                        <label><input type="radio" name="qualityVal" value="0.5"> 50%</label>
+                        <label><input type="radio" name="qualityVal" value="0.3"> 30%</label>
+                     </div>
+                </div>
+            </div>
+
+            <!-- 操作與進度 -->
+            <div class="action-area">
+                <div class="status-text" id="statusText">準備就緒</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+
+                <button class="btn btn-action" onclick="startProcessing()">開始處理並下載</button>
+            </div>
+
+            <!-- Footer Info -->
+            <div class="footer-info">
+                <h3>程式設計 賀禎禎攝影教室</h3>
+                <p>hojenjen2018@gmail.com</p>
+                <p class="highlight">感謝你的使用 (Web v3.0)</p>
+                <a href="https://www.facebook.com/PhotoBeing" target="_blank" style="color: #6366f1; text-decoration: none; font-size: 0.9em; margin-top: 5px; display: inline-block;">Facebook 粉絲頁</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
