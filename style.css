@@ -28,7 +28,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* 防止整個頁面捲動 */
+    overflow: hidden;
+    /* 防止整個頁面捲動 */
 }
 
 /* App Layout */
@@ -49,7 +50,8 @@ body {
         height: 100vh;
         width: 100%;
         border-radius: 0;
-        overflow-y: auto; /* 手機版允許捲動 */
+        overflow-y: auto;
+        /* 手機版允許捲動 */
     }
 }
 
@@ -90,6 +92,7 @@ body {
     background-color: var(--primary);
     color: white;
 }
+
 .btn-primary:hover {
     background-color: var(--primary-hover);
 }
@@ -99,6 +102,7 @@ body {
     border: 1px solid var(--border);
     color: var(--text-sub);
 }
+
 .btn-outline:hover {
     background-color: var(--bg-card);
     color: var(--text-main);
@@ -108,6 +112,7 @@ body {
     color: var(--danger);
     background: transparent;
 }
+
 .btn-danger:hover {
     color: var(--danger-hover);
 }
@@ -119,6 +124,25 @@ body {
     padding: 15px;
     font-size: 1.1rem;
     margin-top: 10px;
+}
+
+.btn-sponsor {
+    width: 100%;
+    background-color: transparent;
+    border: 2px solid #ec4899;
+    /* Pink */
+    color: #ec4899;
+    padding: 12px;
+    font-size: 1rem;
+    margin-top: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+
+.btn-sponsor:hover {
+    background-color: #ec4899;
+    color: white;
 }
 
 /* File List */
@@ -141,9 +165,11 @@ body {
 ::-webkit-scrollbar {
     width: 8px;
 }
+
 ::-webkit-scrollbar-track {
     background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
     background: #444;
     border-radius: 4px;
@@ -158,6 +184,7 @@ body {
     color: var(--text-sub);
     pointer-events: none;
 }
+
 .empty-state .icon {
     font-size: 3rem;
     margin-bottom: 10px;
@@ -186,6 +213,7 @@ body {
     flex: 1;
     overflow: hidden;
 }
+
 .file-name {
     font-weight: bold;
     white-space: nowrap;
@@ -193,6 +221,7 @@ body {
     text-overflow: ellipsis;
     margin-bottom: 4px;
 }
+
 .file-size {
     font-size: 0.8rem;
     color: var(--text-sub);
@@ -200,7 +229,8 @@ body {
 
 /* Right Panel */
 .right-panel {
-    flex: 1; /* 調整比例 */
+    flex: 1;
+    /* 調整比例 */
     min-width: 300px;
     background-color: var(--bg-panel);
     padding: 20px;
@@ -230,6 +260,7 @@ body {
     color: var(--primary);
     font-size: 1rem;
 }
+
 .radio-label input {
     margin-right: 8px;
 }
@@ -242,7 +273,8 @@ body {
     display: none;
 }
 
-select, input[type="number"] {
+select,
+input[type="number"] {
     width: 100%;
     padding: 8px;
     background-color: var(--bg-main);
@@ -257,13 +289,14 @@ select, input[type="number"] {
     display: flex;
     gap: 15px;
 }
+
 .quality-options label {
     cursor: pointer;
 }
 
 /* Status & Progress */
 .action-area {
-    margin-top: auto;
+    margin-top: 30px;
 }
 
 .status-text {
